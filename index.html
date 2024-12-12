@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Fun Facts Generator</title>
+    <style>
+        /* Enhanced Styling */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2.5rem;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        #fact {
+            font-size: 1.3rem;
+            color: #4a4a4a;
+            margin: 30px 0;
+            min-height: 80px;
+            line-height: 1.6;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            font-size: 1.1rem;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 1rem;
+            color: white;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animation for fact transition */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ Fun Facts Generator ✨</h1>
+        <p id="fact">Click the button to reveal a fun fact!</p>
+        <button id="generate-btn">Generate Another Fun Fact</button>
+    </div>
+    <footer>
+        <p>Built with 💖 during the GenAI 101 Workshop</p>
+    </footer>
+    <script>
+        const facts = [
+            "I love hiking and have traveled to five national parks! 🏞️",
+            "I am an avid reader and read around 20 books per year! 📚",
+            "I once baked a 3-tiered cake for a family gathering! 🎂",
+            "I speak three languages fluently! 🗣️",
+            "I'm learning to play the guitar in my free time! 🎸",
+            "I enjoy stargazing and can identify many constellations! ⭐",
+            "I once participated in a marathon and finished it! 🏃",
+            "I love experimenting with new recipes in the kitchen! 👨‍🍳",
+            "I have a small collection of vintage postcards from around the world! ✉️",
+            "I'm passionate about coding and creating small fun projects like this! 💻"
+        ];
+
+        function generateFact() {
+            const factElement = document.getElementById('fact');
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            
+            // Remove and add animation class
+            factElement.classList.remove('fade-in');
+            void factElement.offsetWidth; // Trigger reflow
+            factElement.classList.add('fade-in');
+            
+            factElement.textContent = facts[randomIndex];
+        }
+
+        const generateButton = document.getElementById('generate-btn');
+        generateButton.addEventListener('click', generateFact);
+        window.onload = generateFact;
+    </script>
+</body>
+</html>
